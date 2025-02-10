@@ -24,3 +24,6 @@ jobs:
           git add update-log.txt
           git commit -m "Automated daily update - $(date)"
           git push
+        
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
