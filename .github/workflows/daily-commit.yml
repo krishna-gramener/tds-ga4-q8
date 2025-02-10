@@ -1,0 +1,25 @@
+name: Daily Commit
+
+on:
+  schedule:
+    - cron: "0 3 * * *" # Runs daily at 3:00 AM UTC (Adjust timing as needed)
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Make a Change
+        run: |
+          echo "Last update: $(date)" > update-log.txt
+
+      - name: Commit and Push Changes (krishna.kumar@gramener.com)
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "krishna.kumar@gramener.com"
+          git add update-log.txt
+          git commit -m "Automated daily update"
+          git push
